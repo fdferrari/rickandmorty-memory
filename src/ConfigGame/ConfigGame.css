@@ -1,0 +1,16 @@
+.ConfigGame{
+    width: 99%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.SelectLocation{
+    flex: 1 1 200px;
+    margin-right: 35%;
+    padding: 5px;
+}
+
+.ButtonGroup{
+    flex: 0 1 5px;
+    padding: 5px;
+}
