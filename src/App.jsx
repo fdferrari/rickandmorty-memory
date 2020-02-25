@@ -6,28 +6,27 @@ import ActionGame from './ActionGame/ActionGame';
 import Board from './Board/Board';
 import ConfigGame from './ConfigGame/ConfigGame';
 import Timer from './Timer/Timer';
+import {img1, img2, img3, img4, img5, img7, img10, img11} from './assets/index';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { row: 3, col:3 };
+    this.state = { size : 2 };
   }
 
-  _3To3 = () => this.setState({row: 3, col: 3});
-
-  _4To4 = () => this.setState({row: 4, col: 4});
+  _changeSize = (size) => this.setState({size:size});
 
   render() {
     return (
     <Container className="App">
       <Row>
-        <ConfigGame btn3To3 = {this._3To3} btn4To4 = {this._4To4}/>
+        <ConfigGame changeSize = {this._changeSize}/>
       </Row>
       <Row>
         <Col xs={8}>
           <Row>
-            <Board row={this.state.row} col={this.state.col}/>
+            <Board size={this.state.size} images={[img1, img2, img3, img4, img5, img7, img10, img11]}/>
           </Row>
           <Row>
             <ActionGame />

@@ -9,15 +9,17 @@ class ConfigGame extends React.Component {
     this.state = { selected: null, btnDisabled: true };
   }
 
-  _disabledButton = (e, changeLayout) => {
+  _disabledButton = (e, size) => {
     e.preventDefault();
     this.setState(state => ({
       btnDisabled: !state.btnDisabled
     }));
-    changeLayout();
+    this.props.changeSize(size);
   };
   render() {
     const options = ["Earth (C-137)", "Abadango", "Citadel of Ricks"];
+    const size2 = 2;
+    const size4 = 4;
     return (
       <div className="ConfigGame">
         <Typeahead
@@ -31,22 +33,31 @@ class ConfigGame extends React.Component {
           placeholder="Pick a location..."
         />
         <ButtonGroup className="ButtonGroup">
-          <Button
+          <ButtonSize
             disabled={this.state.btnDisabled}
-            onClick={(e) => this._disabledButton(e, this.props.btn3To3)}
-          >
-            3x3
-          </Button>
-          <Button
+            size={size2}
+            action={this._disabledButton}
+          />
+          <ButtonSize
             disabled={!this.state.btnDisabled}
-            onClick={(e) => this._disabledButton(e, this.props.btn4To4)}
-          >
-            4x4
-          </Button>
+            size={size4}
+            action={this._disabledButton}
+          />
         </ButtonGroup>
       </div>
     );
   }
 }
+
+const ButtonSize = props => {
+  return (
+    <Button
+      disabled={props.disabled}
+      onClick={e => props.action(e, props.size)}
+    >
+      {props.size}x{props.size}
+    </Button>
+  );
+};
 
 export default ConfigGame;

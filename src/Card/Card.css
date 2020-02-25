@@ -1,3 +1,41 @@
-.Card{
-    width: 100%;
+.card-container {
+  display: grid;
+  perspective: 700px;
+}
+
+.card-flip {
+  display: grid;
+  grid-template: 1fr / 1fr;
+  grid-template-areas: "frontAndBack";
+  transform-style: preserve-3d;
+  transition: all 0.7s ease;
+}
+
+.card-flip div {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.card {
+  margin: 5px 5px;
+}
+
+.front {
+  background-color: chocolate;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  grid-area: frontAndBack;
+}
+
+.back {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  grid-area: frontAndBack;
+  transform: rotateY(-180deg);
+}
+
+.is-flip{
+  transform: rotateY(180deg);
 }
